@@ -17,11 +17,17 @@
         <input type="text" class="form-control cc" placeholder="買入多少價" aria-label="Recipient's username" aria-describedby="button-addon2">
       </div>
       <div class="input-group mb-3">
-        <input type="text" class="form-control bb" placeholder="賣出多少價" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary btn-a" type="button" id="button-addon2">計算</button>
-        </div>
+        <input type="text" class="form-control ac" placeholder="買幾張" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <input type="text" class="form-control cd" placeholder="買幾股" aria-label="Recipient's username" aria-describedby="button-addon2">
       </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control bb" placeholder="賣出多少價" aria-label="Recipient's username" aria-describedby="button-addon2">
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control bc" placeholder="買幾張" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <input type="text" class="form-control bd" placeholder="買幾股" aria-label="Recipient's username" aria-describedby="button-addon2">
+      </div>
+      <button type="button" class="btn btn-primary btn-lg btn-block btn-a" style="font-size: 18pt; font-weight: bold;">計算</button>
       <div class="input-group flex-nowrap">
         <div class="input-group-prepend">
           <span class="input-group-text" id="addon-wrapping">買入價格:</span>
@@ -48,12 +54,36 @@
  
     $('.btn-a').on("click",function(){
     var cc = $(".cc").val();  //買入
-    var acc = cc*1000;//買入總價
+    var ac = $(".ac").val();  //買入幾張
+    var cd = $(".cd").val();  //買入幾股
+    var acc = 0;
+    if(cd == '' && ac == ''){
+      acc = cc*1000;//買入總價
+    } else if(ac == ''){
+      acc = cc*cd;//買入總價
+    } else if(cd == ''){
+      acc = cc*1000;//買入總價
+    } else{
+      acc =  (cc*(ac*1000)) + (cc*cd); //買入總價
+    }
+    // var acc = cc*1000;//買入總價
     var accc = acc*0.001425*0.28;//買入手續費
     var acccc = parseInt(accc)+acc //買入手續費+總價
    
     var bb = $(".bb").val();  //賣出
-    var abb = bb*1000;//賣出總價
+    var bc = $(".bc").val();  //賣入幾張
+    var bd = $(".bd").val();  //賣入幾股
+    var abb = 0;
+    if(bd == '' && bc == ''){
+      abb = bb*1000;//買入總價
+    } else if(bc == ''){
+      abb = bb*bd;//買入總價
+    } else if(bd == ''){
+      abb = bb*1000;//賣出總價
+    } else {
+      abb =  (bb*(bc*1000)) + (bb*bd); //買入總價
+    }
+    // var abb = bb*1000;//賣出總價
     var abbb = abb*0.001425*0.28;//賣出手續費
     var abbb3 = abb*0.003;//政府手續費
     var abbbb = abb-parseInt(abbb)-parseInt(abbb3);
