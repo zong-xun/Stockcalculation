@@ -24,8 +24,8 @@
         <input type="text" class="form-control bb" placeholder="賣出多少價" aria-label="Recipient's username" aria-describedby="button-addon2">
       </div>
       <div class="input-group mb-3">
-        <input type="text" class="form-control bc" placeholder="買幾張" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <input type="text" class="form-control bd" placeholder="買幾股" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <input type="text" class="form-control bc" placeholder="賣幾張" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <input type="text" class="form-control bd" placeholder="賣幾股" aria-label="Recipient's username" aria-describedby="button-addon2">
       </div>
       <button type="button" class="btn btn-primary btn-lg btn-block btn-a" style="font-size: 18pt; font-weight: bold;">計算</button>
       <div class="input-group flex-nowrap">
@@ -62,7 +62,7 @@
     } else if(ac == ''){
       acc = cc*cd;//買入總價
     } else if(cd == ''){
-      acc = cc*1000;//買入總價
+      acc = cc*(ac*1000);//買入總價
     } else{
       acc =  (cc*(ac*1000)) + (cc*cd); //買入總價
     }
@@ -79,7 +79,7 @@
     } else if(bc == ''){
       abb = bb*bd;//買入總價
     } else if(bd == ''){
-      abb = bb*1000;//賣出總價
+      abb = bb*(bc*1000);//賣出總價
     } else {
       abb =  (bb*(bc*1000)) + (bb*bd); //買入總價
     }
